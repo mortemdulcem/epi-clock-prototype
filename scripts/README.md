@@ -47,7 +47,7 @@ epi-clock-prototype/
 │  ├─ figures/             # Grafikler
 │  ├─ logs/                # Günlük dosyaları
 │  └─ models/              # Eğitimli modeller
-├─ pyproject.toml          # Proje meta veriler ve bağımlılıklar
+├─ pyproject.toml          # Proje meta verileri ve bağımlılıklar
 └─ README.md
 ```
 
