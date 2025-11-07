@@ -1,13 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+YELLOW="\033[1;33m"; NC="\033[0m"
+
 echo -e "${YELLOW}Adım 1: Veri içe aktarma${NC}"
 python - <<'PY'
-import pandas as pd
+import pandas as pd, os, numpy as np
 from epi_clock.io import read_table, write_table
-import os
+
 raw = "data/raw/example.csv"
 if os.path.exists(raw):
     df = read_table(raw)
 else:
-    import numpy as np
     rng = np.random.default_rng(42)
     df = pd.DataFrame({
         "age": rng.integers(20, 80, size=300),
@@ -38,4 +41,3 @@ df = read_table("data/processed/step2.parquet")
 tr = train_elastic_clock(df, target="age")
 print("Metrics:", report_metrics(tr))
 PY
-
