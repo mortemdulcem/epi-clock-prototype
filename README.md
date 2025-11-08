@@ -95,16 +95,28 @@ pytest -q
 - Model optimization: Gelişmiş hiperparametre araması, model karşılaştırmaları ve ansambllar.
 - Interpretability: Özellik önemleri, SHAP/karar açıklamaları ve biyolojik yorumlanabilirlik.
 - Deployment pathway: Üretim öncesi MLOps hatları, versiyonlama, veri sözleşmeleri ve izlenebilirlik.
+
+## Limitations (Sınırlılıklar)
+- Prototype scope: Bu çalışma prototiptir; klinik/operasyonel doğrulama kapsam dışıdır.
+- Sample size and representativeness: Örneklem sınırlı ve temsiliyeti garanti edilmez; seçim yanlılığı riski vardır.
+- Retrospective design: Prospektif veri toplanmamıştır; veri heterojenliği potansiyel karıştırıcılara açıktır.
+- External validation: Çok-merkezli dış doğrulama yoktur; genellenebilirlik belirsizdir.
+- Technical constraints: Hiperparametre araması/duyarlılık analizleri minimaldir.
+- Reproducibility scope: Donanım/derleyici farkları küçük sapmalara yol açabilir.
+
+# epi-clock-prototype
+Prototype pipeline for epigenetic age acceleration in addiction using synthetic data.
+
 ## Running (PowerShell)
+- Requirements: PowerShell 7+, Python 3.10+, epi_clock package, configs/default.yaml
+- Works on Windows/macOS/Linux (pwsh).
 
-- Requirements: PowerShell 7+, Python, epi_clock package, configs/default.yaml
-- Windows/macOS/Linux (pwsh) üzerinde çalışır.
-
-Çalıştırma:
 ```powershell
-pwsh ./run.ps1 -ConfigPath "configs/default.yaml" -Seed 123
+pwsh ./scripts/run.ps1 -ConfigPath "configs/default.yaml" -Seed 123
 ```
-Adımlar sırası: Ingest → Features → Train → Evaluate → Figures. Çıktılar results/ ve logs/ altına yazılır.
+Steps: Ingest → Features → Train → Evaluate → Figures. Outputs under results/ and logs/.
+
+
 
 
 
