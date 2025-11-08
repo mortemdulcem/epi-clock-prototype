@@ -80,5 +80,20 @@ pytest -q
 
 ## Sürüm
 - v0.1.0 — Prototype (PoC)
+Limitations
+- Prototype scope: Bu çalışma, yöntemin fizibilitesini göstermek amacıyla tasarlanmış bir prototiptir. Klinik/operasyonel doğrulama kapsam dışıdır.
+- Sample size and representativeness: Örneklem büyüklüğü sınırlıdır ve popülasyon temsiliyeti garanti edilmemektedir; seçim yanlılığı riski mevcuttur.
+- Retrospective design: Prospektif veri toplama yapılmamıştır; veri kalitesi ve heterojenliği potansiyel karıştırıcılara açıktır.
+- External validation: Dış doğrulama ve çok-merkezli değerlendirme bulunmamaktadır; genellenebilirlik belirsizdir.
+- Technical constraints: Hiperparametre araması ve duyarlılık analizleri minimal düzeyde tutulmuştur; yöntemsel kararların sonuçlara etkisi kapsamlı test edilmemiştir.
+- Reproducibility scope: Sabit tohum ile yeniden üretim sağlanmakla birlikte, donanım/derleyici farklılıkları küçük sapmalara yol açabilir.
+
+Future Work
+- Prospective and multi-center validation: Standartize protokollerle prospektif, çok-merkezli doğrulama.
+- Expanded datasets: Daha büyük ve dengeli kohortlarla performans ve genellenebilirliğin sistematik incelenmesi.
+- Robustness and bias analysis: Duyarlılık, alt-grup ve kalibrasyon analizleri; fairness ve veri drift değerlendirmeleri.
+- Model optimization: Gelişmiş hiperparametre araması, model karşılaştırmaları ve ansambllar.
+- Interpretability: Özellik önemleri, SHAP/karar açıklamaları ve biyolojik yorumlanabilirlik.
+- Deployment pathway: Üretim öncesi MLOps hatları, versiyonlama, veri sözleşmeleri ve izlenebilirlik.
 
 
