@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "epi-clock"
 version = "0.1.0"
 description = "CLI for analyzing and running simple file reports."
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = NURCAN DENLİ BAYIR", email = "denlizeynep1@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
