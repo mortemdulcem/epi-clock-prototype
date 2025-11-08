@@ -205,3 +205,16 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# epi-clock: data ve çıktı klasörleri
+data/raw/
+data/processed/
+outputs/
+results/
+
+# Eğer data/raw içinde boş bir .gitkeep dosyası tutmak istersen:
+# data/raw/*
+# !data/raw/.gitkeep
+
+# Derleme/kurulum artıkları (zaten çoğu var ama emin olalım)
+*.egg-info/
+pip-wheel-metadata/
