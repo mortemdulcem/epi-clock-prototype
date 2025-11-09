@@ -1,5 +1,5 @@
 pubmed:
-  email: "your-email@domain.com"  # NCBI requires email
+  email: "drnurcandenlibayir@gmail.com"  # NCBI requires email
   api_key: null  # Optional: Get from NCBI for higher rate limits
   queries:
     - term: "(DNA methylation[Title/Abstract]) AND (addiction[Title/Abstract] OR substance abuse[Title/Abstract])"
