@@ -1,94 +1,42 @@
-id: default-config
-name: Epi-Clock Default Config
-type: markdown
-content: |-
-  # Epi-Clock Config (default.yaml)
+pubmed:
+  email: "your-email@domain.com"  # NCBI requires email
+  api_key: null  # Optional: Get from NCBI for higher rate limits
+  queries:
+    - term: "(DNA methylation[Title/Abstract]) AND (addiction[Title/Abstract] OR substance abuse[Title/Abstract])"
+      retmax: 200
+    - term: "(epigenetic clock[Title/Abstract]) AND (substance use[Title/Abstract])"
+      retmax: 100
+    - term: "(methylation age[Title/Abstract]) AND (drug abuse[Title/Abstract])"
+      retmax: 100
+  date_range:
+    start: "2015/01/01"
+    end: "2024/12/31"
 
-  seed: 42
-  paths:
-    raw_dir: data/raw
-    interim_dir: data/interim
-    processed_dir: data/processed
-    results_dir: results
-    logs_dir: logs
+geo:
+  datasets:
+    # Addiction-related methylation studies
+    - accession: "GSE42861"
+      title: "DNA methylation in addiction"
+      platform: "GPL13534"
+    - accession: "GSE50660" 
+      title: "Brain methylation data"
+      platform: "GPL8490"
+    - accession: "GSE87571"
+      title: "Alcohol use disorder methylation"
+      platform: "GPL21145"
+  
+arrayexpress:
+  experiments:
+    - accession: "E-GEOD-42861"
+    - accession: "E-GEOD-50660"
 
-  data:
-    source: synthetic   # synthetic | geo
-    label_column: relapse_3_12m   # 0/1
-    id_column: sample_id
-    subset:
-      addiction_types: [all]  # all | alcohol | opioid | stimulant | cannabis | nicotine | sedative | polysubstance | behavioral
-      train_fraction: 0.8
-      stratify_by: relapse_3_12m
-
-  preprocessing:
-    methylation:
-      platform: "450k_or_epic"   # 450k | EPIC | auto
-      normalization: "noob"      # noob | sswan | quantile
-      combat:
-        enabled: true
-        batch_column: batch
-        covariates: [age, sex]
-    qc:
-      probe_filters:
-        detection_pval_threshold: 0.01
-        beadcount_min: 3
-        remove_cross_reactive: true
-        remove_sex_chromosomes: false
-      sample_filters:
-        call_rate_min: 0.98
-        remove_duplicates: true
-
-  deconvolution:
-    method: "houseman"           # houseman | idol | none
-    reference_panel: "blood"     # blood | cord | saliva
-    include_proportions_as_covariates: true
-
-  clocks:
-    compute: [horvath, hannum, phenoage, grimace]  # grimace=GrimAge
-    outputs:
-      residualized: true        # AgeAccel = residual vs chronological age
-      zscore: true
-
-  features:
-    clock_drift:
-      enabled: true
-      pairs: [["horvath","hannum"], ["phenoage","grimace"]]
-      combine: "zsum"           # zsum | pca1 | meanabs
-    cpg_selection:
-      method: "elasticnet"      # lasso | elasticnet | none
-      n_max: 28
-      alpha_grid: [0.01, 0.05, 0.1, 0.5, 1.0]
-      l1_ratio_grid: [0.1, 0.5, 0.7, 0.9]
-    covariates: [age, sex, bmi, crp, wbc_props_*]
-
-  modeling:
-    target: relapse_3_12m
-    estimator: "logistic"       # logistic | xgboost | rf
-    nested_cv:
-      enabled: true
-      outer_folds: 5
-      inner_folds: 5
-      repeats: 2
-      stratify: true
-    class_weight: "balanced"
-    calibration: "isotonic"     # none | sigmoid | isotonic
-
-  evaluation:
-    metrics: [auc, pr_auc, brier, logloss, sens_at_90sp, cal_slope, cal_intercept]
-    plots:
-      roc: true
-      pr: true
-      calibration: true
-      decision_curve: true
-    subgroup_reports:
-      enabled: true
-      groups:
-        - sex
-        - age_bin   # e.g., <35, 35–50, >50
-        - addiction_type
-
-  export:
-    model_path: results/model.pkl
-    metrics_path: results/metrics.csv
-    figures_dir: results/figures
+reference_clocks:
+  horvath:
+    doi: "10.1186/gb-2013-14-10-r115"
+    cpg_sites_url: "https://example.com/horvath_cpgs.csv"
+  hannum:
+    doi: "10.1016/j.molcel.2012.10.016"  
+    cpg_sites_url: "https://example.com/hannum_cpgs.csv"
+  grimAge:
+    doi: "10.1111/acel.13028"
+    cpg_sites_url: "https://example.com/grimAge_cpgs.csv"
