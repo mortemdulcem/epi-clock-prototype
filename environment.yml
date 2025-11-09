@@ -1,21 +1,22 @@
 name: epi-clock
 channels:
   - conda-forge
-  - defaults
+  - bioconda
 dependencies:
   - python=3.10
-  - pip
   - numpy
   - pandas
-  - scipy
   - scikit-learn
-  - statsmodels
   - matplotlib
-  - seaborn
-  - jupyterlab
+  - pyyaml
+  - joblib
+  - requests
+  - biopython
+  - beautifulsoup4
+  - lxml
+  - tqdm
+  - pip
   - pip:
-      - pyreadr
-      - pyarrow
-      - polars
-      - lifelines
-      - pingouin
+    - GEOparse
+    - xmltodict
+    - pubmed-parser
