@@ -116,6 +116,30 @@ pwsh ./scripts/run.ps1 -ConfigPath "configs/default.yaml" -Seed 123
 ```
 Steps: Ingest → Features → Train → Evaluate → Figures. Outputs under results/ and logs/.
 
+## Setup
+
+### Seçenek A: Conda/Mamba
+# İlk kurulum
+mamba env create -f environment.yml -n epi-clock || conda env create -f environment.yml -n epi-clock
+# Ortamı etkinleştir
+conda activate epi-clock
+# (Güncelleme gerektiğinde)
+mamba env update -f environment.yml -n epi-clock || conda env update -f environment.yml -n epi-clock
+
+### Seçenek B: Pixi
+# Pixi yoksa: https://pixi.sh/ adresinden kurun
+pixi install
+# Çalıştırma komutlarını pixi run ile de çağırabilirsiniz.
+
+## Run (Bash)
+# Linux/macOS:
+./scripts/run.sh --config configs/default.yaml --seed 123
+
+## Run (PowerShell)
+# Windows veya pwsh:
+pwsh ./scripts/run.ps1 -ConfigPath "configs/default.yaml" -Seed 123
+
+
 
 
 
