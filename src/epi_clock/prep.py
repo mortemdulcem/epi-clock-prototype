@@ -1,11 +1,14 @@
 from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Dict, Tuple
+
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import ElasticNetCV
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
+
 
 @dataclass
 class TrainResult:
@@ -15,12 +18,14 @@ class TrainResult:
     y_true: np.ndarray
     y_pred: np.ndarray
 
+
 def split_xy(
     df: pd.DataFrame, target: str, drop_cols: Tuple[str, ...] = ()
 ) -> tuple[pd.DataFrame, pd.Series]:
     X = df.drop(columns=[target, *drop_cols], errors="ignore")
     y = df[target]
     return X, y
+
 
 def train_elastic_clock(
     df: pd.DataFrame,
@@ -46,7 +51,10 @@ def train_elastic_clock(
     y_pred = model.predict(X_test)
     r2 = r2_score(y_test, y_pred)
     mae = mean_absolute_error(y_test, y_pred)
-    return TrainResult(model=model, r2=r2, mae=mae, y_true=y_test.to_numpy(), y_pred=y_pred)
+    return TrainResult(
+        model=model, r2=r2, mae=mae, y_true=y_test.to_numpy(), y_pred=y_pred
+    )
+
 
 def report_metrics(tr: TrainResult) -> Dict[str, float]:
     return {"r2": float(tr.r2), "mae": float(tr.mae)}

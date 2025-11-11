@@ -1,0 +1,17 @@
+name: epi-clock-proto
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - r-base>=4.3
+  - r-tidyverse
+  - r-readr
+  - r-ggplot2
+  - r-data.table
+  - r-hms
+  - r-glue
+  - r-here
+  - pip
+  - pip:
+      - ruff
+      - pre-commit
